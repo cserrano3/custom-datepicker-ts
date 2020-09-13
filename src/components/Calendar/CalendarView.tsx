@@ -20,6 +20,11 @@ const CalendarView = ({
   currentDate
 }: Props) => {
 
+  const monthStartDate = dateFns.startOfMonth(currentDate);
+  const monthEndDate = dateFns.endOfMonth(currentDate);
+  const dayStartOfTheWeek = dateFns.startOfWeek(monthStartDate);
+  const dayEndOfTheWeek = dateFns.endOfWeek(monthEndDate);
+
   return (
     isDatePickerVisible ?
       <div className="calendar">
@@ -46,8 +51,10 @@ const CalendarView = ({
           isSameMonth={false}
         />
         <Week
-          monthStartDate={dateFns.startOfMonth(currentDate)}
-          monthEndDate={dateFns.endOfMonth(currentDate)}
+          monthStartDate={monthStartDate}
+          monthEndDate={monthEndDate}
+          dayEndOfTheWeek={dayEndOfTheWeek}
+          dayStartOfTheWeek={dayStartOfTheWeek}
         />
       </div>
       : null

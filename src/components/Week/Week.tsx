@@ -2,12 +2,14 @@ import React from 'react';
 import * as dateFns from 'date-fns'
 import * as R from 'ramda';
 import DayCell from '../DayCell/DayCell';
+import DAYS_IN_A_WEEK from '../../constants/daysInAWeek';
+import { startAnimation } from 'framer-motion';
 
 interface Props {
   monthStartDate: Date;
   monthEndDate: Date;
-  dayStartOfTheWeek?: number;
-  dayEndOfTheWeek?: number;
+  dayStartOfTheWeek: Date;
+  dayEndOfTheWeek: Date;
   selectedDate?: Date;
 }
 
@@ -19,14 +21,31 @@ const Week = ({
   selectedDate,
 }: Props) => {
 
-  const startDate = parseInt(dateFns.format(monthStartDate, 'd'));
-  const endDate = parseInt(dateFns.format(monthEndDate, 'd'));
+  let weekRow: Array<React.ReactNode> = [];
 
-  const monthRange = Array(R.range(startDate, endDate + 1))
+  let weeks: Array<React.ReactNode> = []
 
+  let day = dayStartOfTheWeek
 
-  // const days = monthRange.map(day => day);
-  console.log(monthRange)
+  console.log('day -------- ', day)
+  while (day <= dayEndOfTheWeek) {
+
+    for (let i = 0; i < DAYS_IN_A_WEEK; i++) {
+      weekRow = [...weekRow, <DayCell
+        currentDay={day}
+        onClickDate={() => console.log('hii')}
+        isSameDay={dateFns.isSameDay(day, new Date())}
+        isSameMonth={dateFns.isSameMonth(day, monthStartDate)}
+      />]
+      console.log('a week ----------- ', weekRow)
+      day = dateFns.addDays(day, 1);
+
+    }
+
+    weeks.push(weekRow);
+    weekRow = []
+  }
+
   return (
     <>{null}</>
   )
