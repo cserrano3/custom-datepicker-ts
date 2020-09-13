@@ -1,0 +1,18 @@
+.date-picker {
+    &__wrapper {
+        position: relative;
+    }
+}
+
+// const weekRange = Array().fill(R.range(dayStartOfTheWeek, dayEndOfTheWeek));
+
+/*  const days = monthRange.map(day => {
+
+     return day;
+     <DayCell
+       currentDay={day}
+       onClickDate={() => console.log('hii')}
+       isSameDay={isSameDay(day, selectedDate)}
+       isSameMonth={isSameMonth(day, monthStartDay)}
+     />
+   } */

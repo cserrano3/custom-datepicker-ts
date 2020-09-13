@@ -1,0 +1,39 @@
+.day-cell {
+    height: 2rem;
+    cursor: pointer;
+    transition: 0.25s ease-out;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 0.2rem;
+
+    &:not(:last-child) {
+        border-right: 1px solid #000;
+    }
+
+    &:not(first-child) {
+        border-left: 1px solid #000;
+    }
+
+    &:hover {
+        background-color: #e5e5e5;
+        transition: 0.25s ease-out;
+    }
+
+    &__number {
+        position: absolute;
+        font-size: 0.5rem;
+        font-weight: 300;
+    }
+}
+
+.selected {
+    border-left: 0.2rem solid transparent !important;
+    border-image: linear-gradient(15deg, #1affa0 0%, #cff153 40%);
+    border-image-slice: 1;
+}
+
+.disabled {
+    color: rgb(153, 153, 153);
+    pointer-events: none;
+}
